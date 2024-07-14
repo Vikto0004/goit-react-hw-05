@@ -18,3 +18,12 @@ export async function getTrendingMovies() {
     console.error(error);
   }
 }
+
+export async function getDetailsMovie(id) {
+  try {
+    const response = await axios.get(`/movie/${id}?language=en-US`, options);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

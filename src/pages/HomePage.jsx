@@ -9,8 +9,8 @@ export default function HomePage() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    setLoader(true);
     const fetchTrendingMovies = async () => {
-      setLoader(true);
       try {
         const { results } = await getTrendingMovies();
         setMovies(results);
