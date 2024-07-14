@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getDetailsMovie } from "../service/movieApi";
 import Loader from "../components/Loader/Loader";
 import ShortMovieDetails from "../components/ShortMovieDetails/ShortMovieDetails";
+import AdditionalInfo from "../components/AdditionalInfo/AdditionalInfo";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -15,7 +16,6 @@ export default function MovieDetailsPage() {
     const fetchDetailsMovie = async () => {
       try {
         const data = await getDetailsMovie(movieId);
-        console.log(data);
         setDataMovie(data);
       } catch (error) {
         setError(error);
@@ -30,6 +30,7 @@ export default function MovieDetailsPage() {
     <>
       {loader && <Loader />} {error && <p>{error}</p>}
       {dataMovie && <ShortMovieDetails data={dataMovie} />}
+      <AdditionalInfo />
     </>
   );
 }
