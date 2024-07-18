@@ -9,7 +9,7 @@ export default function ShortMovieDetails({ data }) {
       />
       <div>
         <h2>{data.original_title}</h2>
-        <p>Vote average: {data.vote_average}/10</p>
+        <p>Vote average: {data.vote_average.toFixed(1)}/10</p>
         <div>
           <h3>Overview</h3>
           <p>{data.overview}</p>

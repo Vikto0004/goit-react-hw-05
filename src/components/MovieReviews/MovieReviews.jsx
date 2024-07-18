@@ -7,7 +7,7 @@ import MovieReviewsList from "../MovieReviewsList/MovieReviews";
 
 export default function MovieReviews() {
   const { movieId } = useParams();
-  const [dataMovie, setDataMovie] = useState(null);
+  const [dataMovie, setDataMovie] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
@@ -16,7 +16,7 @@ export default function MovieReviews() {
     const fetchReviewsMovie = async () => {
       try {
         const data = await getReviewsMovie(movieId);
-        setDataMovie(data);
+        setDataMovie(data.results);
       } catch (error) {
         setError(error);
       } finally {
@@ -29,7 +29,11 @@ export default function MovieReviews() {
   return (
     <>
       {loader && <Loader />} {error && <p>{error}</p>}
-      {dataMovie && <MovieReviewsList dataMovie={dataMovie} />}
+      {dataMovie.length ? (
+        <MovieReviewsList results={dataMovie} />
+      ) : (
+        <p>There are no reviews for this movie</p>
+      )}
     </>
   );
 }

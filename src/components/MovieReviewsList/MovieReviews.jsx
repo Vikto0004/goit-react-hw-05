@@ -1,4 +1,4 @@
-export default function MovieReviewsList({ dataMovie: { results } }) {
+export default function MovieReviewsList({ results }) {
   return (
     <ul>
       {results.map(({ author, id, content }) => (

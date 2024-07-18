@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3/movie";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const options = {
   headers: {
@@ -12,7 +12,7 @@ const options = {
 
 export async function getTrendingMovies() {
   try {
-    const response = await axios.get("/popular?language=en-US", options);
+    const response = await axios.get("/movie/popular?language=en-US", options);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -21,7 +21,7 @@ export async function getTrendingMovies() {
 
 export async function getDetailsMovie(id) {
   try {
-    const response = await axios.get(`/${id}?language=en-US`, options);
+    const response = await axios.get(`/movie/${id}?language=en-US`, options);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -30,7 +30,10 @@ export async function getDetailsMovie(id) {
 
 export async function getCastMovie(id) {
   try {
-    const response = await axios.get(`/${id}/credits?language=en-US`, options);
+    const response = await axios.get(
+      `/movie/${id}/credits?language=en-US`,
+      options
+    );
     return response.data;
   } catch (error) {
     console.error(error);
@@ -39,7 +42,22 @@ export async function getCastMovie(id) {
 
 export async function getReviewsMovie(id) {
   try {
-    const response = await axios.get(`/${id}/reviews?language=en-US`, options);
+    const response = await axios.get(
+      `/movie/${id}/reviews?language=en-US`,
+      options
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSearchMovies(query) {
+  try {
+    const response = await axios.get(
+      `/search/movie?language=en-US&page=1&query=${query}`,
+      options
+    );
     return response.data;
   } catch (error) {
     console.error(error);

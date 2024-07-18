@@ -4,7 +4,7 @@ import Loader from "../components/Loader/Loader";
 import MovieList from "../components/MovieList/MovieList";
 
 export default function HomePage() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <>
       {loader && <Loader />} {error && <p>{error}</p>}
-      {movies.length && <MovieList movies={movies} />}
+      {movies && <MovieList movies={movies} />}
     </>
   );
 }

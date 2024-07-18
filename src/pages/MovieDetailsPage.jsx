@@ -4,6 +4,7 @@ import { getDetailsMovie } from "../service/movieApi";
 import Loader from "../components/Loader/Loader";
 import ShortMovieDetails from "../components/ShortMovieDetails/ShortMovieDetails";
 import AdditionalInfo from "../components/AdditionalInfo/AdditionalInfo";
+import GoBack from "../components/GoBack/GoBack";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -29,6 +30,7 @@ export default function MovieDetailsPage() {
   return (
     <>
       {loader && <Loader />} {error && <p>{error}</p>}
+      <GoBack />
       {dataMovie && <ShortMovieDetails data={dataMovie} />}
       <AdditionalInfo />
     </>
